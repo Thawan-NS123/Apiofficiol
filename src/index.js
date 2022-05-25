@@ -1,24 +1,13 @@
 import 'dotenv/config'
-
 import express from 'express'
 import cors from 'cors'
+import endpoints from './endpoints.js'
 
 const server = express();
 server.use(cors());
+server.use(express.json());
 
-server.get('/ping', (req, resp) =>{
-    resp.send('pong');
-})
-
-server.get('/dobro/:numero', (req, resp) =>{
-    const numero = Number(req.params.numero);
-
-    const s = numero * 2;
-
-    resp.send({
-        dobro:s
-    });
-})
+server.use(endpoints)
 
 
 
